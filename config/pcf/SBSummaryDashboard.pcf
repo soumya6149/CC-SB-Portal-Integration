@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../PCF.xsd">
+
+  <Screen id="SBSummaryDashboard">
+    <Toolbar>
+      <ToolbarButton id="RefreshButton" label="Refresh"
+                     action="CurrentLocation.refresh()"/>
+    </Toolbar>
+
+    <!-- Filters -->
+    <PanelRow>
+      <InputColumn>
+        <TypeKeyInput id="SBStageFilter"    label="SB Stage"
+                      value="CurrentLocation.SelectedSBStage"
+                      valueType="typekey.SBStage_Ext"/>
+        <TypeKeyInput id="SBPackTypeFilter" label="SB Pack Type"
+                      value="CurrentLocation.SelectedPackType"
+                      valueType="typekey.SBPackType_Ext"/>
+      </InputColumn>
+    </PanelRow>
+
+    <!-- Summary Grid -->
+    <ListViewPanel id="SBSummaryLV">
+      <RowIterator editable="false" elementName="summaryRow"
+                   value="CurrentLocation.SBSummaryRows">
+        <Row>
+          <Cell id="DeadlineDate"  label="Deadline Date"
+                value="summaryRow.DeadlineDate_Ext"/>
+          <Cell id="Adjuster"      label="Adjuster"
+                value="summaryRow.AssignedAdjuster_Ext"/>
+          <Cell id="TotalClaims"   label="Total Claims"
+                value="summaryRow.TotalCount"
+                action="CurrentLocation.drillDown(summaryRow)"/>
+          <Cell id="Undefined"     label="Undefined"    value="summaryRow.UndefinedCount"/>
+          <Cell id="Withdrawn"     label="Withdrawn"    value="summaryRow.WithdrawnCount"/>
+          <Cell id="TimedOut"      label="Timed Out"    value="summaryRow.TimedOutCount"/>
+        </Row>
+      </RowIterator>
+    </ListViewPanel>
+
+    <!-- Drilldown -->
+    <ListViewPanel id="SBDrilldownLV" visible="CurrentLocation.DrilldownVisible">
+      <RowIterator editable="false" elementName="claim"
+                   value="CurrentLocation.DrilldownClaims">
+        <Row>
+          <Cell id="ClaimNumber"     label="Claim Number"         value="claim.ClaimNumber"/>
+          <Cell id="PolicyNumber"    label="Policy Number"        value="claim.PolicyNumber_Ext"/>
+          <Cell id="ClaimantName"    label="Claimant Name"        value="claim.ClaimantName_Ext"/>
+          <Cell id="PortalRef"       label="Portal Reference"     value="claim.ExternalClaimID_Ext"/>
+          <Cell id="DefendantName"   label="Defendant Name"       value="claim.DefendantName_Ext"/>
+          <Cell id="Adjuster"        label="Adjuster"             value="claim.AssignedAdjuster_Ext"/>
+          <Cell id="ExtractDate"     label="Portal Extract Date"  value="claim.CreatedDate_Ext"/>
+        </Row>
+      </RowIterator>
+    </ListViewPanel>
+
+  </Screen>
+</PCF>

@@ -7,10 +7,14 @@
   platform="false"
   desc="Error table for permanently failed SB integration records">
 
-  <column name="ExternalClaimID_Ext"  type="varchar"  maxLength="100" nullok="true"  desc="SB Portal Claim ID"/>
-  <column name="NotificationType_Ext" type="varchar"  maxLength="50"  nullok="true"  desc="Notification type at time of failure"/>
-  <column name="RawPayload_Ext"       type="clob"                     nullok="true"  desc="Raw JSON payload"/>
-  <column name="ErrorMessage_Ext"     type="clob"                     nullok="true"  desc="Final error message"/>
-  <column name="RetryCount_Ext"       type="integer"                  nullok="false" desc="Total retries attempted"/>
-  <column name="FailedDate_Ext"       type="datetime"                 nullok="false" desc="Timestamp of permanent failure"/>
+  <column name="ExternalClaimID_Ext" type="varchar" nullok="true" desc="SB Portal Claim ID">
+    <columnParam name="size" value="100"/>
+  </column>
+  <column name="NotificationType_Ext" type="varchar" nullok="true" desc="Notification type at time of failure">
+    <columnParam name="size" value="50"/>
+  </column>
+  <column name="RawPayload_Ext" type="longtext" nullok="true" desc="Raw JSON payload"/>
+  <column name="ErrorMessage_Ext" type="longtext" nullok="true" desc="Final error message"/>
+  <column name="RetryCount_Ext" type="integer" nullok="false" desc="Total retries attempted"/>
+  <column name="FailedDate_Ext" type="datetime" nullok="false" desc="Timestamp of permanent failure"/>
 </entity>

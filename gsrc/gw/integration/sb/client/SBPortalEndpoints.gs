@@ -1,11 +1,11 @@
 package gw.integration.sb.client
 
 class SBPortalEndpoints {
-  static final var GET_ASSIGNMENTS   : String = "/api/v1/assignments"
-  static final var GET_CLAIM_DETAILS : String = "/api/v1/claims/{claimId}"
-  static final var GET_NOTIFICATIONS : String = "/api/v1/notifications"
-  static final var GET_MESSAGES      : String = "/api/v1/claims/{claimId}/messages"
-  static final var GET_MESSAGE       : String = "/api/v1/messages/{attachmentId}"
-  static final var GET_DOCUMENTS     : String = "/api/v1/claims/{claimId}/documents"
-  static final var GET_DOCUMENT      : String = "/api/v1/documents/{attachmentId}"
+  static property get GET_ASSIGNMENTS() : String { return "/api/v1/assignments" }
+  static property get GET_CLAIM_DETAILS() : String { return "/api/v1/claims/{claimId}" }
+  static property get GET_NOTIFICATIONS() : String { return "/api/v1/notifications" }
+  static property get GET_MESSAGES() : String { return "/api/v1/claims/{claimId}/messages" }
+  static property get GET_MESSAGE() : String { return "/api/v1/messages/{attachmentId}" }
+  static property get GET_DOCUMENTS() : String { return "/api/v1/claims/{claimId}/documents" }
+  static property get GET_DOCUMENT() : String { return "/api/v1/documents/{attachmentId}" }
 }

@@ -1,28 +1,28 @@
 package gw.integration.sb.helper
 
 class SBIntegrationConstants {
-  static final var BASE_URL            : String = "sb.portal.baseurl"
-  static final var API_USERNAME        : String = "sb.portal.username"
-  static final var API_PASSWORD        : String = "sb.portal.password"
-  static final var CONNECT_TIMEOUT     : int    = 30000
-  static final var READ_TIMEOUT        : int    = 60000
-  static final var PAGE_SIZE           : int    = 100
-  static final var BATCH_WINDOW_HOURS  : int    = 24
-  static final var MAX_RETRIES         : int    = 3
-  static final var RETRY_BASE_MS       : long   = 2000L
+  static property get BASE_URL() : String { return "sb.portal.baseurl" }
+  static property get API_USERNAME() : String { return "sb.portal.username" }
+  static property get API_PASSWORD() : String { return "sb.portal.password" }
+  static property get CONNECT_TIMEOUT() : int { return 30000 }
+  static property get READ_TIMEOUT() : int { return 60000 }
+  static property get PAGE_SIZE() : int { return 100 }
+  static property get BATCH_WINDOW_HOURS() : int { return 24 }
+  static property get MAX_RETRIES() : int { return 3 }
+  static property get RETRY_BASE_MS() : long { return 2000L }
 
-  static final var STATUS_PENDING      : String = "PENDING"
-  static final var STATUS_IN_PROGRESS  : String = "IN_PROGRESS"
-  static final var STATUS_COMPLETED    : String = "COMPLETED"
-  static final var STATUS_FAILED       : String = "FAILED"
-  static final var STATUS_DEAD         : String = "DEAD"
+  static property get STATUS_PENDING() : String { return "PENDING" }
+  static property get STATUS_IN_PROGRESS() : String { return "IN_PROGRESS" }
+  static property get STATUS_COMPLETED() : String { return "COMPLETED" }
+  static property get STATUS_FAILED() : String { return "FAILED" }
+  static property get STATUS_DEAD() : String { return "DEAD" }
 
-  static final var TYPE_ASSIGNMENT     : String = "Assignment"
-  static final var TYPE_MESSAGES       : String = "Messages"
-  static final var TYPE_MESSAGE        : String = "Message"
-  static final var TYPE_DOCUMENTS      : String = "Documents"
-  static final var TYPE_DOCUMENT       : String = "Document"
-  static final var TYPE_PACK           : String = "Pack"
-  static final var TYPE_WITHDRAWAL     : String = "Withdrawal"
-  static final var TYPE_TIMEOUT        : String = "Timeout"
+  static property get TYPE_ASSIGNMENT() : String { return "Assignment" }
+  static property get TYPE_MESSAGES() : String { return "Messages" }
+  static property get TYPE_MESSAGE() : String { return "Message" }
+  static property get TYPE_DOCUMENTS() : String { return "Documents" }
+  static property get TYPE_DOCUMENT() : String { return "Document" }
+  static property get TYPE_PACK() : String { return "Pack" }
+  static property get TYPE_WITHDRAWAL() : String { return "Withdrawal" }
+  static property get TYPE_TIMEOUT() : String { return "Timeout" }
 }

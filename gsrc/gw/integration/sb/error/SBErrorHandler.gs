@@ -1,45 +1,27 @@
 package gw.integration.sb.error
 
-uses gw.api.util.Logger
 uses gw.integration.sb.helper.SBIntegrationConstants
 uses gw.transaction.Transaction
 uses java.util.Date
 
 class SBErrorHandler {
-  static final var _logger = Logger.forCategory("SBErrorHandler")
-
-  static function handleFailure(staging : entity.SBClaimMetaData_Ext,
-                                 error   : Exception) {
-    Transaction.runWithNewBundle(undle -> {
-      var record     = bundle.loadBean(staging) as entity.SBClaimMetaData_Ext
-      var retryCount = (record.RetryCount_Ext ?: 0) + 1
-      record.RetryCount_Ext   = retryCount
-      record.ErrorMessage_Ext = error.Message
-
-      if (retryCount < SBIntegrationConstants.MAX_RETRIES) {
-        var backoffMs = SBIntegrationConstants.RETRY_BASE_MS * Math.pow(2, retryCount - 1) as long
-        _logger.warn("Retry " + retryCount + "/" + SBIntegrationConstants.MAX_RETRIES
-            + " ExternalClaimID=" + record.ExternalClaimID_Ext + " backoff=" + backoffMs + "ms")
-        Thread.sleep(backoffMs)
-        record.ProcessingStatus_Ext = SBIntegrationConstants.STATUS_PENDING
-      } else {
-        _logger.error("MAX RETRIES exceeded ExternalClaimID=" + record.ExternalClaimID_Ext)
-        record.ProcessingStatus_Ext = SBIntegrationConstants.STATUS_DEAD
-        writeToErrorTable(record, error)
+  static function handleFailure(staging : entity.SBClaimMetaData_Ext, e : Exception) {
+    Transaction.runWithNewBundle(\bundle -> {
+      var record = bundle.add(staging)
+      record.RetryCount_Ext = record.RetryCount_Ext + 1
+      record.ErrorMessage_Ext = e.Message
+      record.ProcessingStatus_Ext = record.RetryCount_Ext >= SBIntegrationConstants.MAX_RETRIES
+          ? SBIntegrationConstants.STATUS_DEAD
+          : SBIntegrationConstants.STATUS_FAILED
+      if (record.ProcessingStatus_Ext == SBIntegrationConstants.STATUS_DEAD) {
+        var err = new entity.SBClaimError_Ext(bundle)
+        err.ExternalClaimID_Ext = record.ExternalClaimID_Ext
+        err.NotificationType_Ext = record.NotificationType_Ext
+        err.RawPayload_Ext = record.RawPayload_Ext
+        err.ErrorMessage_Ext = e.Message
+        err.RetryCount_Ext = record.RetryCount_Ext
+        err.FailedDate_Ext = new Date()
       }
-    })
-  }
-
-  private static function writeToErrorTable(staging : entity.SBClaimMetaData_Ext,
-                                             error   : Exception) {
-    Transaction.runWithNewBundle(undle -> {
-      var err = bundle.loadBean(entity.SBClaimError_Ext) as entity.SBClaimError_Ext
-      err.ExternalClaimID_Ext  = staging.ExternalClaimID_Ext
-      err.RawPayload_Ext       = staging.RawPayload_Ext
-      err.ErrorMessage_Ext     = error.Message
-      err.RetryCount_Ext       = staging.RetryCount_Ext
-      err.FailedDate_Ext       = new Date()
-      err.NotificationType_Ext = staging.NotificationType_Ext
     })
   }
 }

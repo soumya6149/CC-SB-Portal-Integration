@@ -3,50 +3,26 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:noNamespaceSchemaLocation="../../PCF.xsd">
 
-  <Screen id="SBIncidentScreen">
-    <Toolbar>
-      <ToolbarButton id="EditButton" label="Edit" action="CurrentLocation.beginEditing()"/>
-      <ToolbarButton id="UpdateButton" label="Update" action="CurrentLocation.commit()"/>
-    </Toolbar>
+  <Page id="SBIncidentScreen"
+        title="DisplayKey.get(&quot;Web.SBPortal.IncidentScreen.Title&quot;)">
+    <LocationEntryPoint signature="SBIncidentScreen(sbClaim : entity.SBClaim_Ext)"/>
+    <Variable name="sbClaim" type="entity.SBClaim_Ext"/>
 
-    <TabbedPanel id="SBIncidentTabbedPanel">
+    <Screen id="SBIncidentInnerScreen">
+      <PanelRef def="SBIncidentDV(sbClaim)"/>
 
-      <!-- Liability Tab -->
-      <Tab id="LiabilityTab" label="Liability">
-        <PanelRef def="SBLiabilityDV"/>
-      </Tab>
+      <ListViewPanel id="SBDocumentsLV">
+        <RowIterator editable="false" elementName="sbDoc"
+                     value="gw.api.database.Query.make(entity.SBUnattachedDocument_Ext).compare(&quot;ExternalClaimID_Ext&quot;, Equals, sbClaim.ExternalClaimID_Ext).select().toTypedArray()"
+                     valueType="entity.SBUnattachedDocument_Ext[]">
+          <Row>
+            <TextCell id="DocName" label="&quot;Document Name&quot;" value="sbDoc.AttachmentID_Ext"/>
+            <TextCell id="DocDescription" label="&quot;Description&quot;" value="sbDoc.Description_Ext"/>
+            <TextCell id="DocAuthor" label="&quot;Author&quot;" value="sbDoc.Author_Ext"/>
+          </Row>
+        </RowIterator>
+      </ListViewPanel>
 
-      <!-- Documents Tab -->
-      <Tab id="DocumentsTab" label="Documents">
-        <ListViewPanel id="SBDocumentsLV">
-          <RowIterator editable="false" elementName="sbDoc"
-                       value="CurrentLocation.SBClaim.Documents">
-            <Row>
-              <Cell id="DocName"        label="Document Name"
-                    value="sbDoc.Name" action="openInNewWindow(sbDoc.URL)"/>
-              <Cell id="DocDescription" label="Description"    value="sbDoc.Description_Ext"/>
-              <Cell id="DocDate"        label="Date"           value="sbDoc.AttachDate_Ext"/>
-              <Cell id="DocCategory"    label="Category"       value="sbDoc.Category_Ext"/>
-              <Cell id="DocAuthor"      label="Author"         value="sbDoc.Author_Ext"/>
-            </Row>
-          </RowIterator>
-        </ListViewPanel>
-      </Tab>
-
-      <!-- History Tab -->
-      <Tab id="HistoryTab" label="History">
-        <ListViewPanel id="SBHistoryLV">
-          <RowIterator editable="false" elementName="histEntry"
-                       value="CurrentLocation.SBClaim.HistoryEntries">
-            <Row>
-              <Cell id="HistUser"        label="User"        value="histEntry.User"/>
-              <Cell id="HistTimestamp"   label="Time"        value="histEntry.EventTime_Ext"/>
-              <Cell id="HistDescription" label="Description" value="histEntry.Description_Ext"/>
-            </Row>
-          </RowIterator>
-        </ListViewPanel>
-      </Tab>
-
-    </TabbedPanel>
-  </Screen>
+    </Screen>
+  </Page>
 </PCF>

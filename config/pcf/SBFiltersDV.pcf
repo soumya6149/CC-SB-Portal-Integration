@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../PCF.xsd">
+
+  <DetailViewPanel id="SBFiltersDV">
+    <Require name="location" type="gw.integration.sb.screen.SBSummaryDashboardScreen"/>
+    <InputColumn>
+      <TextInput id="SBStageFilter"
+                 label="&quot;SB Stage&quot;"
+                 value="location.SelectedSBStageCode"/>
+      <TextInput id="SBPackTypeFilter"
+                 label="&quot;SB Pack Type&quot;"
+                 value="location.SelectedPackTypeCode"/>
+    </InputColumn>
+  </DetailViewPanel>
+</PCF>

@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../PCF.xsd">
+
+  <Page id="SBSummaryDashboardScreen"
+        title="DisplayKey.get(&quot;Web.SBPortal.SummaryDashboard.Title&quot;)">
+    <LocationEntryPoint signature="SBSummaryDashboardScreen()"/>
+    <Variable name="location"
+              type="gw.integration.sb.screen.SBSummaryDashboardScreen"
+              initialValue="new gw.integration.sb.screen.SBSummaryDashboardScreen()"/>
+
+    <Screen id="SBSummaryDashboardInnerScreen">
+      <Toolbar>
+        <ToolbarButton id="RefreshButton" label="&quot;Refresh&quot;" action="location.refresh()"/>
+      </Toolbar>
+
+      <PanelRef def="SBFiltersDV(location)"/>
+
+      <ListViewPanel id="SBSummaryLV">
+        <RowIterator editable="false" elementName="summaryRow"
+                     value="location.SBSummaryRows"
+                     valueType="gw.integration.sb.helper.SBSummaryRow[]">
+          <Row>
+            <DateCell id="DeadlineDate" label="&quot;Deadline Date&quot;" value="summaryRow.DeadlineDate_Ext"/>
+            <TextCell id="Adjuster" label="&quot;Adjuster&quot;" value="summaryRow.AssignedAdjuster_Ext"/>
+            <LinkCell id="TotalClaims" label="&quot;Total Claims&quot;">
+              <Link id="DrillDownLink"
+                    label="summaryRow.TotalCount as String"
+                    action="location.drillDown(summaryRow)"/>
+            </LinkCell>
+            <TextCell id="Undefined" label="&quot;Undefined&quot;" value="summaryRow.UndefinedCount" valueType="int"/>
+            <TextCell id="Withdrawn" label="&quot;Withdrawn&quot;" value="summaryRow.WithdrawnCount" valueType="int"/>
+            <TextCell id="TimedOut" label="&quot;Timed Out&quot;" value="summaryRow.TimedOutCount" valueType="int"/>
+          </Row>
+        </RowIterator>
+      </ListViewPanel>
+
+      <ListViewPanel id="SBDrilldownLV" visible="location.DrilldownVisible">
+        <RowIterator editable="false" elementName="claim"
+                     value="location.DrilldownClaims"
+                     valueType="entity.SBClaim_Ext[]">
+          <Row>
+            <TextCell id="ClaimNumber" label="&quot;Claim Number&quot;" value="claim.CCClaim == null ? null : claim.CCClaim.ClaimNumber"/>
+            <TextCell id="PolicyNumber" label="&quot;Policy Number&quot;" value="claim.PolicyNumber_Ext"/>
+            <TextCell id="ClaimantName" label="&quot;Claimant Name&quot;" value="claim.ClaimantName_Ext"/>
+            <TextCell id="PortalRef" label="&quot;Portal Reference&quot;" value="claim.ExternalClaimID_Ext"/>
+            <TextCell id="Adjuster" label="&quot;Adjuster&quot;" value="claim.AssignedAdjuster_Ext"/>
+            <DateCell id="DeadlineDate" label="&quot;Deadline Date&quot;" value="claim.DeadlineDate_Ext"/>
+          </Row>
+        </RowIterator>
+      </ListViewPanel>
+
+    </Screen>
+  </Page>
+</PCF>

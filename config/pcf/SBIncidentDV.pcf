@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../PCF.xsd">
+
+  <DetailViewPanel id="SBIncidentDV">
+    <Require name="sbClaim" type="entity.SBClaim_Ext"/>
+    <InputColumn>
+      <TextInput id="ExternalClaimID" label="&quot;Portal Claim ID&quot;" value="sbClaim.ExternalClaimID_Ext"/>
+      <TextInput id="PolicyNumber" label="&quot;Policy Number&quot;" value="sbClaim.PolicyNumber_Ext"/>
+      <TextInput id="ClaimantName" label="&quot;Claimant Name&quot;" value="sbClaim.ClaimantName_Ext"/>
+      <TextInput id="SBStage" label="&quot;SB Stage&quot;" value="sbClaim.SBStage_Ext"/>
+      <TextInput id="PackType" label="&quot;Pack Type&quot;" value="sbClaim.PackType_Ext"/>
+      <DateInput id="DeadlineDate" label="&quot;Deadline Date&quot;" value="sbClaim.DeadlineDate_Ext"/>
+      <TextInput id="Adjuster" label="&quot;Assigned Adjuster&quot;" value="sbClaim.AssignedAdjuster_Ext"/>
+    </InputColumn>
+  </DetailViewPanel>
+</PCF>

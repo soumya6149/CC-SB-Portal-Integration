@@ -7,10 +7,18 @@
   platform="false"
   desc="Temporary store for SB messages/documents not yet linked to a CC Claim">
 
-  <column name="ExternalClaimID_Ext" type="varchar"  maxLength="100" nullok="true"  desc="SB Portal Claim ID"/>
-  <column name="AttachmentID_Ext"    type="varchar"  maxLength="100" nullok="true"  desc="SB attachment ID"/>
-  <column name="Description_Ext"     type="varchar"  maxLength="500" nullok="true"  desc="Document/message description"/>
-  <column name="RawContent_Ext"      type="clob"                     nullok="true"  desc="Raw content"/>
-  <column name="Author_Ext"          type="varchar"  maxLength="200" nullok="true"  desc="Author name"/>
-  <column name="Converted_Ext"       type="bit"                      nullok="false" desc="True when converted to standard object"/>
+  <column name="ExternalClaimID_Ext" type="varchar" nullok="true" desc="SB Portal Claim ID">
+    <columnParam name="size" value="100"/>
+  </column>
+  <column name="AttachmentID_Ext" type="varchar" nullok="true" desc="SB attachment ID">
+    <columnParam name="size" value="100"/>
+  </column>
+  <column name="Description_Ext" type="varchar" nullok="true" desc="Document/message description">
+    <columnParam name="size" value="500"/>
+  </column>
+  <column name="RawContent_Ext" type="longtext" nullok="true" desc="Raw content"/>
+  <column name="Author_Ext" type="varchar" nullok="true" desc="Author name">
+    <columnParam name="size" value="200"/>
+  </column>
+  <column name="Converted_Ext" type="bit" nullok="false" desc="True when converted to standard object"/>
 </entity>

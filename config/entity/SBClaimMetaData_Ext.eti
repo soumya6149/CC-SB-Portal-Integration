@@ -7,24 +7,42 @@
   platform="false"
   desc="Staging table for SB Portal integration">
 
-  <column name="ExternalClaimID_Ext"  type="varchar"  maxLength="100" nullok="true"  desc="SB Portal Claim ID"/>
-  <column name="NotificationType_Ext" type="varchar"  maxLength="50"  nullok="true"  desc="Assignment/Message/Document/Pack"/>
-  <column name="AttachmentID_Ext"     type="varchar"  maxLength="100" nullok="true"  desc="SB Portal attachment ID"/>
-  <column name="PolicyNumber_Ext"     type="varchar"  maxLength="50"  nullok="true"  desc="Policy number for claim matching"/>
-  <column name="ClaimantName_Ext"     type="varchar"  maxLength="200" nullok="true"  desc="Claimant full name"/>
-  <column name="PackType_Ext"         type="varchar"  maxLength="100" nullok="true"  desc="SB Pack type"/>
-  <column name="SBStage_Ext"          type="varchar"  maxLength="100" nullok="true"  desc="Current SB stage"/>
-  <column name="DeadlineDate_Ext"     type="datetime"                 nullok="true"  desc="Response deadline from SB Portal"/>
-  <column name="AssignedAdjuster_Ext" type="varchar"  maxLength="200" nullok="true"  desc="Assigned adjuster name"/>
-  <column name="RawPayload_Ext"       type="clob"                     nullok="true"  desc="Full raw JSON response from SB Portal"/>
-  <column name="ErrorMessage_Ext"     type="clob"                     nullok="true"  desc="Last error message"/>
-  <column name="ProcessingStatus_Ext" type="varchar"  maxLength="50"  nullok="false" desc="PENDING/IN_PROGRESS/COMPLETED/FAILED/DEAD"/>
-  <column name="RetryCount_Ext"       type="integer"                  nullok="false" desc="Number of processing retries"/>
-  <column name="CreatedDate_Ext"      type="datetime"                 nullok="false" desc="Record creation timestamp"/>
-  <column name="ProcessedDate_Ext"    type="datetime"                 nullok="true"  desc="Record completion timestamp"/>
+  <column name="ExternalClaimID_Ext" type="varchar" nullok="true" desc="SB Portal Claim ID">
+    <columnParam name="size" value="100"/>
+  </column>
+  <column name="NotificationType_Ext" type="varchar" nullok="true" desc="Assignment/Message/Document/Pack">
+    <columnParam name="size" value="50"/>
+  </column>
+  <column name="AttachmentID_Ext" type="varchar" nullok="true" desc="SB Portal attachment ID">
+    <columnParam name="size" value="100"/>
+  </column>
+  <column name="PolicyNumber_Ext" type="varchar" nullok="true" desc="Policy number for claim matching">
+    <columnParam name="size" value="50"/>
+  </column>
+  <column name="ClaimantName_Ext" type="varchar" nullok="true" desc="Claimant full name">
+    <columnParam name="size" value="200"/>
+  </column>
+  <column name="PackType_Ext" type="varchar" nullok="true" desc="SB Pack type">
+    <columnParam name="size" value="100"/>
+  </column>
+  <column name="SBStage_Ext" type="varchar" nullok="true" desc="Current SB stage">
+    <columnParam name="size" value="100"/>
+  </column>
+  <column name="DeadlineDate_Ext" type="datetime" nullok="true" desc="Response deadline from SB Portal"/>
+  <column name="AssignedAdjuster_Ext" type="varchar" nullok="true" desc="Assigned adjuster name">
+    <columnParam name="size" value="200"/>
+  </column>
+  <column name="RawPayload_Ext" type="longtext" nullok="true" desc="Full raw JSON response from SB Portal"/>
+  <column name="ErrorMessage_Ext" type="longtext" nullok="true" desc="Last error message"/>
+  <column name="ProcessingStatus_Ext" type="varchar" nullok="false" desc="PENDING/IN_PROGRESS/COMPLETED/FAILED/DEAD">
+    <columnParam name="size" value="50"/>
+  </column>
+  <column name="RetryCount_Ext" type="integer" nullok="false" desc="Number of processing retries"/>
+  <column name="CreatedDate_Ext" type="datetime" nullok="false" desc="Record creation timestamp"/>
+  <column name="ProcessedDate_Ext" type="datetime" nullok="true" desc="Record completion timestamp"/>
 
-  <index name="SBMetaByExtIDStatus" unique="false">
-    <indexcol name="ExternalClaimID_Ext"  keyposition="1"/>
+  <index name="sbmeta_ext_stat" unique="false">
+    <indexcol name="ExternalClaimID_Ext" keyposition="1"/>
     <indexcol name="ProcessingStatus_Ext" keyposition="2"/>
   </index>
 </entity>

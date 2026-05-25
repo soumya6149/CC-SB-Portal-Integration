@@ -7,14 +7,30 @@
   platform="false"
   desc="SB Portal injury claim record linked to CC Claim">
 
-  <column name="ExternalClaimID_Ext"     type="varchar"  maxLength="100" nullok="false" desc="SB Portal unique claim ID"/>
-  <column name="ThirdPartyRefNumber_Ext" type="varchar"  maxLength="100" nullok="true"  desc="Third party reference number"/>
-  <column name="PolicyNumber_Ext"        type="varchar"  maxLength="50"  nullok="true"  desc="Related policy number"/>
-  <column name="ClaimantName_Ext"        type="varchar"  maxLength="200" nullok="true"  desc="Claimant name"/>
-  <column name="PackType_Ext"            type="varchar"  maxLength="100" nullok="true"  desc="SB pack type"/>
-  <column name="SBStage_Ext"             type="varchar"  maxLength="100" nullok="true"  desc="SB processing stage"/>
-  <column name="DeadlineDate_Ext"        type="datetime"                 nullok="true"  desc="SB response deadline"/>
-  <column name="AssignedAdjuster_Ext"    type="varchar"  maxLength="200" nullok="true"  desc="Assigned adjuster"/>
+  <implementsEntity name="Extractable"/>
+
+  <column name="ExternalClaimID_Ext" type="varchar" nullok="false" desc="SB Portal unique claim ID">
+    <columnParam name="size" value="100"/>
+  </column>
+  <column name="ThirdPartyRefNumber_Ext" type="varchar" nullok="true" desc="Third party reference number">
+    <columnParam name="size" value="100"/>
+  </column>
+  <column name="PolicyNumber_Ext" type="varchar" nullok="true" desc="Related policy number">
+    <columnParam name="size" value="50"/>
+  </column>
+  <column name="ClaimantName_Ext" type="varchar" nullok="true" desc="Claimant name">
+    <columnParam name="size" value="200"/>
+  </column>
+  <column name="PackType_Ext" type="varchar" nullok="true" desc="SB pack type">
+    <columnParam name="size" value="100"/>
+  </column>
+  <column name="SBStage_Ext" type="varchar" nullok="true" desc="SB processing stage">
+    <columnParam name="size" value="100"/>
+  </column>
+  <column name="DeadlineDate_Ext" type="datetime" nullok="true" desc="SB response deadline"/>
+  <column name="AssignedAdjuster_Ext" type="varchar" nullok="true" desc="Assigned adjuster">
+    <columnParam name="size" value="200"/>
+  </column>
 
   <foreignkey name="CCClaim" fkentity="Claim" nullok="true" desc="Linked ClaimCenter claim"/>
 

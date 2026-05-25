@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<batch-process-config xmlns="http://guidewire.com/pl/batch">
+  <batch-process id="SeedSBTestDataBatch"
+                 cron="0 0 0 1 1 ? 2099"
+                 description="Seed local SB integration test data for UI testing"
+                 enabled="false"/>
+</batch-process-config>

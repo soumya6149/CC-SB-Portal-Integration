@@ -513,4 +513,8 @@
     <category code="UIRunnable" typelist="BatchProcessTypeUsage"/>
     <category code="Schedulable" typelist="BatchProcessTypeUsage"/>
   </typecode>
+  <typecode code="SeedSBTestDataBatch" desc="Seed SB integration test data" name="Seed SB Test Data">
+    <category code="APIRunnable" typelist="BatchProcessTypeUsage"/>
+    <category code="UIRunnable" typelist="BatchProcessTypeUsage"/>
+  </typecode>
 </typelistextension>

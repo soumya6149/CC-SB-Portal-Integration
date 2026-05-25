@@ -21,6 +21,10 @@
                  class="gw.integration.sb.workqueue.SBWorkQueueBatch"
                  description="Enqueue pending SB staging records into work queue"/>
 
+  <batch-process id="SeedSBTestDataBatch"
+                 class="gw.integration.sb.batch.SeedSBTestDataBatch"
+                 description="Seed local SB integration test data for UI testing"/>
+
   <!-- Work Queue Handler Registration -->
   <workqueue-handler id="SBWorkQueueHandler"
                      class="gw.integration.sb.workqueue.SBWorkQueueHandler"

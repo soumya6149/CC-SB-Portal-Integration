@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<batch-process-config xmlns="http://guidewire.com/pl/batch">
+  <batch-process id="RetrieveNotificationsBatch"
+                 cron="0 2/5 * * * ?"
+                 description="Retrieve SB notifications — runs every 5 minutes, offset by 2 min"
+                 enabled="true"/>
+</batch-process-config>

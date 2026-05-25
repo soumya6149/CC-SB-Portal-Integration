@@ -1,0 +1,10 @@
+*.class
+*.jar
+*.war
+*.log
+*.tmp
+.DS_Store
+build/
+out/
+.idea/
+*.iml

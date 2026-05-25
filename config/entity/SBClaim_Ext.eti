@@ -2,22 +2,23 @@
 <entity
   xmlns="http://guidewire.com/datamodel"
   entity="SBClaim_Ext"
+  table="SBClaim_Ext"
   type="retireable"
-  desc="SB Portal injury claim record linked to CC Claim"
-  platform="ClaimCenter">
+  platform="false"
+  desc="SB Portal injury claim record linked to CC Claim">
 
-  <column name="ExternalClaimID_Ext"     type="varchar"  size="100" desc="SB Portal unique claim ID"/>
-  <column name="ThirdPartyRefNumber_Ext" type="varchar"  size="100" desc="Third party reference number"/>
-  <column name="PolicyNumber_Ext"        type="varchar"  size="50"  desc="Related policy number"/>
-  <column name="ClaimantName_Ext"        type="varchar"  size="200" desc="Claimant name"/>
-  <column name="PackType_Ext"            type="varchar"  size="100" desc="SB pack type"/>
-  <column name="SBStage_Ext"             type="varchar"  size="100" desc="SB processing stage"/>
-  <column name="DeadlineDate_Ext"        type="datetime"            desc="SB response deadline"/>
-  <column name="AssignedAdjuster_Ext"    type="varchar"  size="200" desc="Assigned adjuster"/>
+  <column name="ExternalClaimID_Ext"     type="varchar"  maxLength="100" nullok="false" desc="SB Portal unique claim ID"/>
+  <column name="ThirdPartyRefNumber_Ext" type="varchar"  maxLength="100" nullok="true"  desc="Third party reference number"/>
+  <column name="PolicyNumber_Ext"        type="varchar"  maxLength="50"  nullok="true"  desc="Related policy number"/>
+  <column name="ClaimantName_Ext"        type="varchar"  maxLength="200" nullok="true"  desc="Claimant name"/>
+  <column name="PackType_Ext"            type="varchar"  maxLength="100" nullok="true"  desc="SB pack type"/>
+  <column name="SBStage_Ext"             type="varchar"  maxLength="100" nullok="true"  desc="SB processing stage"/>
+  <column name="DeadlineDate_Ext"        type="datetime"                 nullok="true"  desc="SB response deadline"/>
+  <column name="AssignedAdjuster_Ext"    type="varchar"  maxLength="200" nullok="true"  desc="Assigned adjuster"/>
 
-  <foreignkey name="CCClaim" type="Claim" desc="Linked ClaimCenter claim"/>
+  <foreignkey name="CCClaim" fkentity="Claim" nullok="true" desc="Linked ClaimCenter claim"/>
 
   <index name="SBClaimByExtID" unique="true">
-    <indexcol name="ExternalClaimID_Ext"/>
+    <indexcol name="ExternalClaimID_Ext" keyposition="1"/>
   </index>
 </entity>

@@ -2,14 +2,15 @@
 <entity
   xmlns="http://guidewire.com/datamodel"
   entity="SBUnattachedDocument_Ext"
+  table="SBUnattachedDocument_Ext"
   type="retireable"
-  desc="Temporary store for SB messages/documents not yet linked to a CC Claim"
-  platform="ClaimCenter">
+  platform="false"
+  desc="Temporary store for SB messages/documents not yet linked to a CC Claim">
 
-  <column name="ExternalClaimID_Ext" type="varchar"  size="100" desc="SB Portal Claim ID"/>
-  <column name="AttachmentID_Ext"    type="varchar"  size="100" desc="SB attachment ID"/>
-  <column name="Description_Ext"     type="varchar"  size="500" desc="Document/message description"/>
-  <column name="RawContent_Ext"      type="clob"                desc="Raw content"/>
-  <column name="Author_Ext"          type="varchar"  size="200" desc="Author name"/>
-  <column name="Converted_Ext"       type="bit"                 desc="True when converted to standard object"/>
+  <column name="ExternalClaimID_Ext" type="varchar"  maxLength="100" nullok="true"  desc="SB Portal Claim ID"/>
+  <column name="AttachmentID_Ext"    type="varchar"  maxLength="100" nullok="true"  desc="SB attachment ID"/>
+  <column name="Description_Ext"     type="varchar"  maxLength="500" nullok="true"  desc="Document/message description"/>
+  <column name="RawContent_Ext"      type="clob"                     nullok="true"  desc="Raw content"/>
+  <column name="Author_Ext"          type="varchar"  maxLength="200" nullok="true"  desc="Author name"/>
+  <column name="Converted_Ext"       type="bit"                      nullok="false" desc="True when converted to standard object"/>
 </entity>

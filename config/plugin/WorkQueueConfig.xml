@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<workqueue-config xmlns="http://guidewire.com/pl/workqueue">
+
+  <workqueue id="SBWorkQueue"
+             handler="SBWorkQueueHandler"
+             thread-count="10"
+             batch-size="50"
+             max-retries="3"
+             retry-delay-ms="2000"
+             description="SB Portal integration work queue — processes assignments, messages and documents"/>
+
+</workqueue-config>

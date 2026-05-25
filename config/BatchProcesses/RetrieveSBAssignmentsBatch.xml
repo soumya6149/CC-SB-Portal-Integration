@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<batch-process-config xmlns="http://guidewire.com/pl/batch">
+  <batch-process id="RetrieveSBAssignmentsBatch"
+                 cron="0 0/5 * * * ?"
+                 description="Retrieve SB assignments — runs every 5 minutes, 24hr window"
+                 enabled="true"/>
+</batch-process-config>

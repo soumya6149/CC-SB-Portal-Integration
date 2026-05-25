@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<entity
+  xmlns="http://guidewire.com/datamodel"
+  entity="SBClaimMetaData_Ext"
+  type="retireable"
+  desc="Staging table for SB Portal integration — stores raw assignments and notifications"
+  platform="ClaimCenter">
+
+  <column name="ExternalClaimID_Ext"  type="varchar"   size="100" desc="SB Portal Claim ID"/>
+  <column name="NotificationType_Ext" type="varchar"   size="50"  desc="Assignment/Message/Document/Pack"/>
+  <column name="AttachmentID_Ext"     type="varchar"   size="100" desc="SB Portal attachment ID"/>
+  <column name="PolicyNumber_Ext"     type="varchar"   size="50"  desc="Policy number for claim matching"/>
+  <column name="ClaimantName_Ext"     type="varchar"   size="200" desc="Claimant full name"/>
+  <column name="PackType_Ext"         type="varchar"   size="100" desc="SB Pack type"/>
+  <column name="SBStage_Ext"          type="varchar"   size="100" desc="Current SB stage"/>
+  <column name="DeadlineDate_Ext"     type="datetime"             desc="Response deadline from SB Portal"/>
+  <column name="AssignedAdjuster_Ext" type="varchar"   size="200" desc="Assigned adjuster name"/>
+  <column name="RawPayload_Ext"       type="clob"                 desc="Full raw JSON response from SB Portal"/>
+  <column name="ErrorMessage_Ext"     type="clob"                 desc="Last error message"/>
+  <column name="ProcessingStatus_Ext" type="varchar"   size="50"  desc="PENDING/IN_PROGRESS/COMPLETED/FAILED/DEAD"/>
+  <column name="RetryCount_Ext"       type="integer"              desc="Number of processing retries"/>
+  <column name="CreatedDate_Ext"      type="datetime"             desc="Record creation timestamp"/>
+  <column name="ProcessedDate_Ext"    type="datetime"             desc="Record completion timestamp"/>
+
+  <index name="SBMetaByExtIDStatus" unique="false">
+    <indexcol name="ExternalClaimID_Ext"/>
+    <indexcol name="ProcessingStatus_Ext"/>
+  </index>
+</entity>

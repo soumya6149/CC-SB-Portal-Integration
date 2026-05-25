@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<plugin-registry xmlns="http://guidewire.com/pl/plugin">
+
+  <!-- SB Portal Basic Auth Configuration -->
+  <plugin-config id="SBPortalConfig" interface="ISBPortalConfig">
+    <param name="BaseUrl"  value="https://sb-portal.example.com"/>
+    <param name="Username" value="${SB_PORTAL_USERNAME}"/>
+    <param name="Password" value="${SB_PORTAL_PASSWORD}"/>
+  </plugin-config>
+
+  <!-- Batch Process Registrations -->
+  <batch-process id="RetrieveSBAssignmentsBatch"
+                 class="gw.integration.sb.batch.RetrieveSBAssignmentsBatch"
+                 description="Retrieve SB Portal assignments every 5 minutes"/>
+
+  <batch-process id="RetrieveNotificationsBatch"
+                 class="gw.integration.sb.batch.RetrieveNotificationsBatch"
+                 description="Retrieve SB Portal notifications every 5 minutes"/>
+
+  <batch-process id="SBWorkQueueBatch"
+                 class="gw.integration.sb.workqueue.SBWorkQueueBatch"
+                 description="Enqueue pending SB staging records into work queue"/>
+
+  <!-- Work Queue Handler Registration -->
+  <workqueue-handler id="SBWorkQueueHandler"
+                     class="gw.integration.sb.workqueue.SBWorkQueueHandler"
+                     description="Processes SB Portal work items in parallel"
+                     thread-count="10"
+                     max-retries="3"/>
+
+</plugin-registry>

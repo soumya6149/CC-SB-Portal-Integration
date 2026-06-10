@@ -1,6 +1,6 @@
 # CC-SB-Portal-Integration
 
-Guidewire ClaimCenter v10 (on-premises) integration with the SB Portal — Increment 1.
+Guidewire ClaimCenter v10 (on-premises) integration with the SB Portal.
 
 ## Overview
 

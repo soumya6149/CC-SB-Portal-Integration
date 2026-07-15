@@ -72,6 +72,6 @@ Never hardcode credentials — use environment variable substitution.
 3. Deploy PCF screens to `config/pcf/`
 4. Register plugins in `config/plugin/plugin.xml`
 5. Configure batch cron in `config/BatchProcesses/`
-6. Run database schema update
+6. Run Database schema update
 7. Set `SB_PORTAL_USERNAME` and `SB_PORTAL_PASSWORD` environment variables
 8. Verify batch processes appear in Guidewire Admin UI
